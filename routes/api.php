@@ -30,6 +30,6 @@ Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
 
 // Préstamos
 Route::get('/prestamos', [PrestamoController::class, 'index']);
-Route::get('/prestamos/{id}', [PrestamoController::class, 'show']);
+// Route::get('/prestamos/{id}', [PrestamoController::class, 'show']);
 Route::post('/prestamos', [PrestamoController::class, 'store']);
 Route::put('/prestamos/{id}/devolver', [PrestamoController::class, 'devolver']);

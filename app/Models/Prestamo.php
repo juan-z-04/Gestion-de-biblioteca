@@ -17,7 +17,7 @@ class Prestamo extends Model
         'usuario_id',
         'libro_id',
         'fecha_prestamo',
-        'fecha_devolucion_estimada',
+        'fecha_devolucion',
         'fecha_devolucion_real',
         'estado',
     ];
@@ -25,7 +25,7 @@ class Prestamo extends Model
     // Casts de tipos
     protected $casts = [
         'fecha_prestamo' => 'date',
-        'fecha_devolucion_estimada' => 'date',
+        'fecha_devolucion' => 'date',
         'fecha_devolucion_real' => 'date',
     ];
 
