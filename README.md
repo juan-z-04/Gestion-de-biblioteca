@@ -1,59 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+1) Clonar el repositorio
+git clone https://github.com/tu-usuario/gestion-biblioteca.git
+cd gestion-biblioteca
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+2) Instalar dependencias
+composer install
 
-## About Laravel
+3)  Configurar el archivo .env
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Copia el archivo de ejemplo:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+cp .env.example .env
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+Configura la conexión a PostgreSQL:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=biblioteca
+DB_USERNAME=postgres
+DB_PASSWORD=tu_password
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4)  Generar la clave de la aplicación
+php artisan key:generate
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5)  Ejecutar migraciones
+php artisan migrate
 
-### Premium Partners
+ Opcional (solo desarrollo):
+Para borrar y recrear toda la base de datos:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+php artisan migrate:fresh
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6)  Ejecutar seeders (datos de prueba)
+php artisan db:seed
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+O un seeder específico:
 
-## Security Vulnerabilities
+php artisan db:seed --class=UsuarioSeeder
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+7)  Levantar el servidor
+php artisan serve
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+La aplicación estará disponible en:
+
+http://127.0.0.1:8000
+
+8) Endpoints principales (API)
+ Libros
+Método	Endpoint	Descripción
+GET	/api/libros	Listar libros
+GET	/api/libros/{id}	Ver libro por ID
+POST	/api/libros	Crear libro
+PUT	/api/libros/{id}	Actualizar libro
+
+9) Usuarios
+Método	Endpoint
+GET	/api/usuarios
+POST	/api/usuarios
+
+10) Préstamos
+Método	Endpoint
+POST	/api/prestamos
+PATCH	/api/prestamos/{id}
+
+
+11) Ejemplo JSON para crear un préstamo
+{
+  "usuario_id": 1,
+  "libro_id": 2,
+  "fecha_prestamo": "2026-01-19",
+  "fecha_devolucion_estimada": "2026-02-02",
+  "estado": "activo"
+}
+
+12) Relaciones del sistema
+
+Un autor puede tener muchos libros (Many to Many)
+
+Un libro puede tener varios autores
+
+Un usuario puede tener muchos préstamos
+
+Un préstamo pertenece a un usuario y a un libro
+
+
+
+13) Buenas prácticas aplicadas
+
+Eager Loading (with()) para evitar N+1 Problem
+
+Validaciones con Form Request
+
+Uso de migraciones y seeders
+
+API REST estructurada
+
+PostgreSQL como motor de base de datos
+
+
+14) Autor
+
+Tu Nombre
+ Email: juan.zapata.giraldo25@gmail.com
+
+ GitHub: https://github.com/juan-z-04  
+
+
+
+
+
